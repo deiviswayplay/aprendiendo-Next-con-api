@@ -23,7 +23,6 @@ export default async function Home({ params, searchParams }) {
        <Paginator page={page} />
       <TagContainer tags={tags} />
       <GamesContainer games={juegos} />
-      
     </>
   );
 }

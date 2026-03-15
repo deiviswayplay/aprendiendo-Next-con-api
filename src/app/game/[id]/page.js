@@ -30,9 +30,10 @@ export default async function Page({ params }) {
         <div className={styles.right}>
           <div className={styles.info}>
             <p className={styles.name}>Nombre del juego: {game.name}</p>
-            <p>Rating: {game.rating}</p>
+            
+            
             <p>Fecha de lanzamiento: {game.released}</p>
-            <p>
+             <p>
               Géneros:{" "}
               {game.genres.map((genre, index) => (
                 <span key={genre.id}>
@@ -40,7 +41,9 @@ export default async function Page({ params }) {
                   {index < game.genres.length - 1 ? ", " : ""}
                 </span>
               ))}
+              <p className={styles.raiting}> + {game.rating}</p>
             </p>
+           
           </div>
 
           <h2 className={styles.title}> 🎮 Juegos recomendados</h2>

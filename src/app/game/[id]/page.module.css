@@ -12,6 +12,11 @@
 
 }
 
+.image {
+ border-radius: 20px;
+
+}
+
 .right {
     display: flex;
     justify-content: center;
@@ -54,4 +59,12 @@
     font-size: 14px;
     font-weight: bold;
     margin-top: 8px;
+}
+.raiting {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    border-radius: 0px;
+    border: 2px solid yellow;
+    width: fit-content;
 }

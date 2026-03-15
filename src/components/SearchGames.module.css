@@ -10,3 +10,10 @@
     border-radius: 4px;
     font-size: 16px;
 }
+.title {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 20px;
+    color: var(--foreground);
+    font-weight: bold;
+}

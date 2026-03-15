@@ -7,7 +7,7 @@ export default function GamesContainer({ games }) {
       {games.length > 0 ? (
         games.map((game) => (
           <div key={game.id}>
-            <GamesCard
+            <GamesCard 
               backgroundColor={game.dominant_Color}
               title={game.name}
               games={game}

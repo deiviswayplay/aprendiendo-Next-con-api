@@ -37,8 +37,7 @@ export default function TagSidebarSlider({ tags }) {
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="p-6">
-
+        <div className="p-3">
           {/* Botón cerrar */}
           <button
             onClick={() => setOpen(false)}
@@ -47,10 +46,10 @@ export default function TagSidebarSlider({ tags }) {
             Cerrar
           </button>
 
-          <h2 className="text-xl mb-4">🎮 </h2>
+          <h2 className="text-xl mb-2">🎮 </h2>
 
           {/* Lista de tags */}
-          <ul className="space-y-3">
+          <ul className="space-y-1">
             {tags.map((tag) => (
               <li
                 key={tag.id}
@@ -61,7 +60,6 @@ export default function TagSidebarSlider({ tags }) {
               </li>
             ))}
           </ul>
-
         </div>
       </div>
     </>
