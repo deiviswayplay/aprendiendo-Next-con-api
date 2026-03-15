@@ -18,11 +18,12 @@ export default async function Home({ params, searchParams }) {
 
   return (
     <>
-      <Paginator page={page} />
+     
       <SearchGames />
+       <Paginator page={page} />
       <TagContainer tags={tags} />
       <GamesContainer games={juegos} />
-      <Paginator page={page} />
+      
     </>
   );
 }

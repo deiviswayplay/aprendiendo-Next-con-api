@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    gap: 5px;
+}
+
+.tag {
+    background-color: gray;
+    padding: 2px;
+    cursor: pointer;
+}

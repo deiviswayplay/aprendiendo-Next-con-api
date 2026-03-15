@@ -1,8 +1,9 @@
 import GamesCard from "./GamesCard";
+import styles from "./GamesContainer.module.css";
 
 export default function GamesContainer({ games }) {
   return (
-    <div className="flex flex-wrap gap-4 justify-center bg-black text-white min-h-screen">
+    <div className={styles.container}>
       {games.length > 0 ? (
         games.map((game) => (
           <div key={game.id}>
