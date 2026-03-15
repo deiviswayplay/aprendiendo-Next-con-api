@@ -6,10 +6,9 @@ export const getGames = async (page = 1, name = "", genres) => {
     page,
     search: name,
     key: process.env.API_KEY,
-    
   });
-  if (genres.length > 0){
-    params.set('tags', genres)
+  if (genres && genres.length > 0) {
+    params.set("genres", genres.join(","));
   }
 
   const res = await fetch(`${process.env.API_URL}/games?${params}`, {
@@ -50,4 +49,15 @@ export const getGameById = async (id) => {
   );
   const datos = await res.json();
   return datos;
+};
+
+// sugerencias de juegos por género
+export const getGamesByGenre = async (genre) => {
+  const res = await fetch(
+    `${process.env.API_URL}/games?key=${process.env.API_KEY}&genres=${genre}&page_size=2`,
+  );
+
+  const data = await res.json();
+
+  return data.results;
 };

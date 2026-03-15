@@ -1,30 +1,69 @@
-import { getGameById } from "@/actions/serverActions";
+import { getGameById, getGamesByGenre } from "@/actions/serverActions";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default async function Page({ params }) {
   const { id } = await params;
-  
-  const { name, background_image, rating, creator_count, description, released, genres, platforms, developers, publishers, tags, website } = await getGameById(id);
+
+  const game = await getGameById(id);
+
+  const genreSlug = game.genres[0].slug;
+  // obtenemos el slug del primer género del juego para usarlo 
+  // en la función getGamesByGenre y obtener juegos relacionados a ese género
+  const suggestedGames = await getGamesByGenre(genreSlug);
 
   return (
     <div className={styles.container}>
-      <Image src={background_image}   alt={name} width={400} height={300} className = {styles.image} />
-      <div className={styles.info}>
-      <p className={styles.name} >Nombre del juego: {name}</p>
-      <p className={styles.rating}>Rating: {rating}</p>
-      <p className={styles.creators}>Cantidad de creadores: {creator_count}</p>
-      <p className={styles.slug}>Slug: {id}</p>
-      <p className={styles.description}>Descripción: Lorem ipsum dolor sit amet, consectetur.</p>
-      <p className={styles.released}>Fecha de lanzamiento: 2023-01-01</p>
-      <p className={styles.genres}>Géneros: Acción, Aventura</p>
-      <p className={styles.platforms}>Plataformas: PC, PlayStation, Xbox</p>
-      <p className={styles.developers}>Desarrolladores: Studio XYZ</p>
-      <p className={styles.publishers}>Publicadores: Publisher ABC</p>
-      <p className={styles.tags}>Etiquetas: Multijugador, Mundo Abierto</p>
-      <p className={styles.website}>Sitio web: <a href="https://www.example.com" target="_blank">www.example.com</a></p>
+      <div className={styles.layout}>
+        {/* lado izquierdo */}
+        <div className={styles.left}>
+          <Image
+            src={game.background_image}
+            alt={game.name}
+            width={600}
+            height={500}
+            className={styles.image}
+          />
         </div>
+          {/* lado derecho */}
+        <div className={styles.right}>
+          <div className={styles.info}>
+            <p className={styles.name}>Nombre del juego: {game.name}</p>
+            <p>Rating: {game.rating}</p>
+            <p>Fecha de lanzamiento: {game.released}</p>
+            <p>
+              Géneros:{" "}
+              {game.genres.map((genre, index) => (
+                <span key={genre.id}>
+                  <Link href={`/?genres=${genre.slug}`}>{genre.name}</Link>
+                  {index < game.genres.length - 1 ? ", " : ""}
+                </span>
+              ))}
+            </p>
+          </div>
 
+          <h2 className={styles.title}> 🎮 Juegos recomendados</h2>
+          <div className={styles.suggestions}>
+            {suggestedGames.slice(0, 2).map((item) => (
+              <Link key={item.id} href={`/game/${item.id}`}>
+                <div className={styles.card}>
+                  <Image
+                    src={item.background_image}
+                    alt={item.name}
+                    width={200}
+                    height={120}
+                  />
+
+                  <p>{item.name}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+// getGamesByGenre lo usamos para mostrar juegos relacionados al género del juego que estamos viendo, esto lo hacemos para mejorar 
+// la experiencia del usuario y ofrecerle opciones similares a lo que le gusta. 

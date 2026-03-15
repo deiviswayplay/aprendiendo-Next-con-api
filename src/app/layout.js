@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SidebarSlider from "@/components/Modal";
+
 
 
 const geistSans = Geist({
@@ -23,10 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body
         className={` ${geistSans.variable} ${geistMono.variable} antialiased`}
-        
       >
-       {/*    <SidebarSlider />  aquí aparece el botón ☰ y el slider oculto */}
-        
         {children}
       </body>
     </html>

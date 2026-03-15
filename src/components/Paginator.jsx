@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 
-export default function Paginator({page = 1}) {
+export default function Paginator({ page = 1 }) {
   const router = useRouter();
 
   const handLeNextPage = () => {
@@ -22,7 +22,5 @@ export default function Paginator({page = 1}) {
         siguiente
       </button>
     </>
-  )
+  );
 }
-
-    
